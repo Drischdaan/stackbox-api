@@ -18,18 +18,12 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@stackbox/common": [
-        "libs/common/src"
-      ],
-      "@stackbox/common/*": [
-        "libs/common/src/*"
-      ],
-      "@stackbox/database": [
-        "libs/database/src"
-      ],
-      "@stackbox/database/*": [
-        "libs/database/src/*"
-      ]
+      "@stackbox/common": ["libs/common/src"],
+      "@stackbox/common/*": ["libs/common/src/*"],
+      "@stackbox/database": ["libs/database/src"],
+      "@stackbox/database/*": ["libs/database/src/*"],
+      "@stackbox/workspaces": ["libs/workspaces/src"],
+      "@stackbox/workspaces/*": ["libs/workspaces/src/*"]
     }
   }
 }

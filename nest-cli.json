@@ -26,6 +26,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/database/tsconfig.lib.json"
       }
+    },
+    "workspaces": {
+      "type": "library",
+      "root": "libs/workspaces",
+      "entryFile": "index",
+      "sourceRoot": "libs/workspaces/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/workspaces/tsconfig.lib.json"
+      }
     }
   }
 }
