@@ -10,6 +10,10 @@ async function bootstrap() {
   const configService: ConfigService = app.get<ConfigService>(ConfigService);
   const appConfig: IAppConfig = configService.get<IAppConfig>('app');
 
+  app.enableCors({
+    origin: appConfig.allowedOrigins,
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
