@@ -1,5 +1,5 @@
 import { TestBed } from '@automock/jest';
-import { AppController } from './app.controller';
+import { AppController, PingResponse } from './app.controller';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -11,8 +11,9 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return ping', () => {
+      const expected: PingResponse = { ping: 'pong' };
+      expect(appController.getPing()).toEqual(expected);
     });
   });
 });
