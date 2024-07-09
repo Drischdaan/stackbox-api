@@ -16,6 +16,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiParam,
+  ApiTags,
 } from '@nestjs/swagger';
 import {
   DeletionResult,
@@ -31,6 +32,7 @@ import {
 import { WorkspacesService } from '../services/workspaces.service';
 
 @Controller('workspaces')
+@ApiTags('workspaces')
 export class WorkspacesController {
   constructor(private readonly workspacesService: WorkspacesService) {}
 
