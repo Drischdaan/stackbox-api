@@ -58,6 +58,22 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
+## Migrations
+
+```bash
+# generate migration
+$ pnpm migrations:generate ./libs/database/src/migrations/<migration-name>
+
+# run migration
+$ pnpm migrations:run
+
+# revert migration
+$ pnpm migrations:revert
+
+# create migration
+$ pnpm migrations:create ./libs/database/src/migrations/<migration-name>
+```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).

@@ -23,6 +23,12 @@
       ],
       "@stackbox/common/*": [
         "libs/common/src/*"
+      ],
+      "@stackbox/database": [
+        "libs/database/src"
+      ],
+      "@stackbox/database/*": [
+        "libs/database/src/*"
       ]
     }
   }
