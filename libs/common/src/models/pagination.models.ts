@@ -13,7 +13,7 @@ export interface IPaginationOptions {
 export class PaginationOptionsDto implements IPaginationOptions {
   @IsOptional()
   @IsNumber()
-  @IsPositive()
+  @Min(0)
   @Type(() => Number)
   @ApiProperty({ required: false })
   page?: number;
@@ -38,4 +38,17 @@ export function validatePaginationOptions(
 ): IPaginationOptions {
   if (!options) return DEFAULT_PAGINATION_OPTIONS;
   return { ...DEFAULT_PAGINATION_OPTIONS, ...options };
+}
+
+export interface IPaginationInfo {
+  totalItems: number;
+  totalPages: number;
+}
+
+export class PaginationInfoDto implements IPaginationInfo {
+  @ApiProperty()
+  totalItems: number;
+
+  @ApiProperty()
+  totalPages: number;
 }

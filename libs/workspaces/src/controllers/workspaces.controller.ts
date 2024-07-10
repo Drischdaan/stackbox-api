@@ -23,6 +23,10 @@ import {
   ExceptionResult,
   PaginationOptionsDto,
 } from '@stackbox/common';
+import {
+  IPaginationInfo,
+  PaginationInfoDto,
+} from '../../../common/src/models/pagination.models';
 import { WorkspaceEntity } from '../entities/workspace.entity';
 import {
   IWorkspaceEntity,
@@ -42,6 +46,14 @@ export class WorkspacesController {
     @Query() paginationOptions?: PaginationOptionsDto,
   ): Promise<IWorkspaceEntity[]> {
     return await this.workspacesService.getPaginatedList(paginationOptions);
+  }
+
+  @Get('list/info')
+  @ApiOkResponse({ type: PaginationInfoDto })
+  async getWorkspacesListInfo(
+    @Query() paginationOptions?: PaginationOptionsDto,
+  ): Promise<IPaginationInfo> {
+    return await this.workspacesService.getPaginationInfo(paginationOptions);
   }
 
   @Get(':id')

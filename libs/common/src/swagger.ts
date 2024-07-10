@@ -1,6 +1,7 @@
 import { INestApplication, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
+import { PaginationOptionsDto } from './models/pagination.models';
 
 export function useSwagger(app: INestApplication) {
   const logger: Logger = new Logger('Bootstrap');
@@ -15,6 +16,7 @@ export function useSwagger(app: INestApplication) {
     app,
     builder.build(),
     {
+      extraModels: [PaginationOptionsDto],
       operationIdFactory: (_: string, methodKey: string) => methodKey,
     },
   );

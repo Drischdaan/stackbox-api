@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   DeletionResult,
+  IPaginationInfo,
   IPaginationOptions,
   validatePaginationOptions,
 } from '@stackbox/common';
@@ -22,6 +23,17 @@ export class WorkspacesService {
 
   async getCount(): Promise<number> {
     return await this.workspacesRepository.count();
+  }
+
+  async getPaginationInfo(
+    paginationOptions?: IPaginationOptions,
+  ): Promise<IPaginationInfo> {
+    paginationOptions = validatePaginationOptions(paginationOptions);
+    const totalItems: number = await this.getCount();
+    return {
+      totalItems,
+      totalPages: Math.ceil(totalItems / paginationOptions.limit) - 1,
+    };
   }
 
   async getPaginatedList(
