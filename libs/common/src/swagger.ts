@@ -47,6 +47,7 @@ export const ApiPaginatedOkResponse = <TClass extends Type<unknown>>(
     ApiExtraModels(PaginationDto, dto),
     ApiOkResponse({
       schema: {
+        title: `Paginated${dto.name.replace('Entity', '')}sList`,
         allOf: [
           { $ref: getSchemaPath(PaginationDto) },
           {
@@ -56,6 +57,7 @@ export const ApiPaginatedOkResponse = <TClass extends Type<unknown>>(
                 items: { $ref: getSchemaPath(dto) },
               },
             },
+            required: ['items'],
           },
         ],
       },
