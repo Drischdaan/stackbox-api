@@ -19,10 +19,10 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import {
+  ApiPaginatedOkResponse,
   DeletionResult,
   ExceptionResult,
-  IPaginationInfo,
-  PaginationInfoDto,
+  PaginationDto,
   PaginationOptionsDto,
 } from '@stackbox/common';
 import { ProductEntity } from '../entities/product.entity';
@@ -39,19 +39,11 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Get()
-  @ApiOkResponse({ type: [ProductEntity] })
+  @ApiPaginatedOkResponse(ProductEntity)
   async getProductsList(
     @Query() paginationOptions?: PaginationOptionsDto,
-  ): Promise<IProductEntity[]> {
+  ): Promise<PaginationDto<IProductEntity>> {
     return await this.productsService.getPaginatedList(paginationOptions);
-  }
-
-  @Get('list/info')
-  @ApiOkResponse({ type: PaginationInfoDto })
-  async getProductsListInfo(
-    @Query() paginationOptions?: PaginationOptionsDto,
-  ): Promise<IPaginationInfo> {
-    return await this.productsService.getPaginationInfo(paginationOptions);
   }
 
   @Get(':id')

@@ -52,3 +52,10 @@ export class PaginationInfoDto implements IPaginationInfo {
   @ApiProperty()
   totalPages: number;
 }
+
+export class PaginationDto<T> {
+  @ApiProperty()
+  meta: PaginationInfoDto;
+
+  items: T[];
+}

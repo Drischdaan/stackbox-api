@@ -1,7 +1,22 @@
-import { INestApplication, Logger } from '@nestjs/common';
+import {
+  applyDecorators,
+  INestApplication,
+  Logger,
+  Type,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
-import { PaginationOptionsDto } from './models/pagination.models';
+import {
+  ApiExtraModels,
+  ApiOkResponse,
+  DocumentBuilder,
+  getSchemaPath,
+  OpenAPIObject,
+  SwaggerModule,
+} from '@nestjs/swagger';
+import {
+  PaginationDto,
+  PaginationOptionsDto,
+} from './models/pagination.models';
 
 export function useSwagger(app: INestApplication) {
   const logger: Logger = new Logger('Bootstrap');
@@ -24,3 +39,25 @@ export function useSwagger(app: INestApplication) {
   SwaggerModule.setup('swagger', app, document);
   logger.log('📚 Swagger is enabled and running on /swagger');
 }
+
+export const ApiPaginatedOkResponse = <TClass extends Type<unknown>>(
+  dto: TClass,
+) =>
+  applyDecorators(
+    ApiExtraModels(PaginationDto, dto),
+    ApiOkResponse({
+      schema: {
+        allOf: [
+          { $ref: getSchemaPath(PaginationDto) },
+          {
+            properties: {
+              items: {
+                type: 'array',
+                items: { $ref: getSchemaPath(dto) },
+              },
+            },
+          },
+        ],
+      },
+    }),
+  );

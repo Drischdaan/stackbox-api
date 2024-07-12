@@ -19,14 +19,12 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import {
+  ApiPaginatedOkResponse,
   DeletionResult,
   ExceptionResult,
   PaginationOptionsDto,
 } from '@stackbox/common';
-import {
-  IPaginationInfo,
-  PaginationInfoDto,
-} from '../../../common/src/models/pagination.models';
+import { PaginationDto } from '../../../common/src/models/pagination.models';
 import { WorkspaceEntity } from '../entities/workspace.entity';
 import {
   IWorkspaceEntity,
@@ -41,19 +39,11 @@ export class WorkspacesController {
   constructor(private readonly workspacesService: WorkspacesService) {}
 
   @Get()
-  @ApiOkResponse({ type: [WorkspaceEntity] })
+  @ApiPaginatedOkResponse(WorkspaceEntity)
   async getWorkspacesList(
     @Query() paginationOptions?: PaginationOptionsDto,
-  ): Promise<IWorkspaceEntity[]> {
+  ): Promise<PaginationDto<IWorkspaceEntity>> {
     return await this.workspacesService.getPaginatedList(paginationOptions);
-  }
-
-  @Get('list/info')
-  @ApiOkResponse({ type: PaginationInfoDto })
-  async getWorkspacesListInfo(
-    @Query() paginationOptions?: PaginationOptionsDto,
-  ): Promise<IPaginationInfo> {
-    return await this.workspacesService.getPaginationInfo(paginationOptions);
   }
 
   @Get(':id')
