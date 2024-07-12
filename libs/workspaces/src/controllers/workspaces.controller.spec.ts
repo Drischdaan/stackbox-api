@@ -1,7 +1,11 @@
 import { TestBed } from '@automock/jest';
 import { DeletionResult } from '@stackbox/common';
 import { TestDataFactory } from '@stackbox/common/tests/factories';
-import { IWorkspaceEntity } from '../models/workspaces.models';
+import { WorkspaceEntity } from '../entities/workspace.entity';
+import {
+  WorkspaceCreateDto,
+  WorkspaceUpdateDto,
+} from '../models/workspaces.models';
 import { WorkspacesService } from '../services/workspaces.service';
 import { WorkspacesController } from './workspaces.controller';
 
@@ -23,7 +27,7 @@ describe('WorkspacesController', () => {
 
   describe('getWorkspacesList', () => {
     it('should return a list of workspaces', async () => {
-      const expected: IWorkspaceEntity[] =
+      const expected: WorkspaceEntity[] =
         TestDataFactory.Workspace.buildList(5);
 
       service.getPaginatedList.mockResolvedValue(expected);
@@ -33,7 +37,7 @@ describe('WorkspacesController', () => {
     });
 
     it('should return an empty list if no workspaces are found', async () => {
-      const expected: IWorkspaceEntity[] = [];
+      const expected: WorkspaceEntity[] = [];
 
       service.getPaginatedList.mockResolvedValue(expected);
 
@@ -42,7 +46,7 @@ describe('WorkspacesController', () => {
     });
 
     it('should return a list of workspaces with pagination options', async () => {
-      const expected: IWorkspaceEntity[] =
+      const expected: WorkspaceEntity[] =
         TestDataFactory.Workspace.buildList(5);
       const paginationOptions = { limit: 10, page: 1 };
 
@@ -57,7 +61,7 @@ describe('WorkspacesController', () => {
 
   describe('getWorkspaceById', () => {
     it('should return a workspace by id', async () => {
-      const expected: IWorkspaceEntity = TestDataFactory.Workspace.build();
+      const expected: WorkspaceEntity = TestDataFactory.Workspace.build();
 
       service.getById.mockResolvedValue(expected);
 
@@ -79,11 +83,11 @@ describe('WorkspacesController', () => {
 
   describe('createWorkspace', () => {
     it('should create a new workspace', async () => {
-      const createDto = {
+      const createDto: WorkspaceCreateDto = {
         name: 'Workspace Name',
         description: 'Workspace Description',
       };
-      const expected: IWorkspaceEntity = TestDataFactory.Workspace.build({
+      const expected: WorkspaceEntity = TestDataFactory.Workspace.build({
         name: createDto.name,
         description: createDto.description,
       });
@@ -95,7 +99,7 @@ describe('WorkspacesController', () => {
     });
 
     it('should throw a ConflictException if the workspace already exists', async () => {
-      const createDto = {
+      const createDto: WorkspaceCreateDto = {
         name: 'Workspace Name',
         description: 'Workspace Description',
       };
@@ -111,11 +115,11 @@ describe('WorkspacesController', () => {
 
   describe('updateWorkspace', () => {
     it('should update a workspace', async () => {
-      const updateDto = {
+      const updateDto: WorkspaceUpdateDto = {
         name: 'Workspace Name',
         description: 'Workspace Description',
       };
-      const expected: IWorkspaceEntity = TestDataFactory.Workspace.build({
+      const expected: WorkspaceEntity = TestDataFactory.Workspace.build({
         name: updateDto.name,
         description: updateDto.description,
       });
@@ -130,7 +134,7 @@ describe('WorkspacesController', () => {
 
     it('should throw a NotFoundException if no workspace is found', async () => {
       const id = '1234';
-      const updateDto = {
+      const updateDto: WorkspaceUpdateDto = {
         name: 'Workspace Name',
         description: 'Workspace Description',
       };

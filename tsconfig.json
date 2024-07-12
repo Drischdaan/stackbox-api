@@ -23,7 +23,9 @@
       "@stackbox/database": ["libs/database/src"],
       "@stackbox/database/*": ["libs/database/src/*"],
       "@stackbox/workspaces": ["libs/workspaces/src"],
-      "@stackbox/workspaces/*": ["libs/workspaces/src/*"]
+      "@stackbox/workspaces/*": ["libs/workspaces/src/*"],
+      "@stackbox/products": ["libs/products/src"],
+      "@stackbox/products/*": ["libs/products/src/*"]
     }
   }
 }

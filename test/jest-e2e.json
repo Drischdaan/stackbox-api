@@ -16,7 +16,9 @@
     "@stackbox/database/(.*)": "<rootDir>/../libs/database/src/$1",
     "@stackbox/database": "<rootDir>/../libs/database/src",
     "@stackbox/workspaces/(.*)": "<rootDir>/../libs/workspaces/src/$1",
-    "@stackbox/workspaces": "<rootDir>/../libs/workspaces/src"
+    "@stackbox/workspaces": "<rootDir>/../libs/workspaces/src",
+    "@stackbox/products/(.*)": "<rootDir>/../libs/products/src/$1",
+    "@stackbox/products": "<rootDir>/../libs/products/src"
   },
   "setupFilesAfterEnv": [
     "./setup.e2e.ts"

@@ -96,7 +96,8 @@
     "moduleNameMapper": {
       "^@stackbox/common(|/.*)$": "<rootDir>/libs/common/src/$1",
       "^@stackbox/database(|/.*)$": "<rootDir>/libs/database/src/$1",
-      "^@stackbox/workspaces(|/.*)$": "<rootDir>/libs/workspaces/src/$1"
+      "^@stackbox/workspaces(|/.*)$": "<rootDir>/libs/workspaces/src/$1",
+      "^@stackbox/products(|/.*)$": "<rootDir>/libs/products/src/$1"
     }
   }
 }
